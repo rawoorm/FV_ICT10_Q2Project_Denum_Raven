@@ -5,7 +5,7 @@ from pyscript import document
 elements = {
     "H": ('Hydrogen', 'H', 1, 1.008),
     "He": ('Helium', 'He', 2, 4.0026),
-    "C": ('Carboon', 'C', 6, 12.011),
+    "C": ('Carbon', 'C', 6, 12.011),
     "N": ('Nitrogen', 'N', 7, 14.007),
     "O": ('Oxygen', 'O', 8, 15.999),
     "F": ('Fluorine', 'F', 9, 18.998),
