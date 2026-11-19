@@ -15,165 +15,222 @@
     <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: linear-gradient(135deg, #071a33, #102f50, #164e63);
+            background: #f1f0ed;
             min-height: 100vh;
             font-family: Arial, sans-serif;
-            color: white;
-            padding: 40px 15px;
+            color: #373631;
+            padding: 30px 20px;
+            margin: 0;
         }
 
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        nav a {
+            background: #ffffff;
+            color: #55534e;
+            padding: 12px 18px;
+            border: 1px solid #dedbd5;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #d8d4cd;
+            color: #292824;
+        }
+
+        /* Main Card */
         .main-card {
             background: #ffffff;
-            color: #183153;
-            max-width: 650px;
+            color: #373631;
+            max-width: 750px;
             margin: auto;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            padding: 45px;
+            border: 1px solid #e3e0db;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(50, 45, 40, 0.06);
         }
 
+        /* Header */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+        }
+
+        .atom-icon {
+            width: 85px;
+            height: 85px;
+            background: #e5e2dc;
+            color: #625e57;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 38px;
         }
 
         .header h1 {
             font-weight: bold;
-            color: #123c69;
+            color: #35332f;
             font-size: 32px;
+            margin-bottom: 12px;
         }
 
         .header p {
-            color: #64748b;
-            font-size: 15px;
+            color: #89857f;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 8px;
         }
 
-        .atom-icon {
-            font-size: 45px;
-            margin-bottom: 10px;
+        /* Search Section */
+        .search-section {
+            background: #f7f6f3;
+            border: 1px solid #e7e4df;
+            border-radius: 12px;
+            padding: 25px;
         }
 
         .search-label {
+            display: block;
             font-weight: bold;
+            font-size: 13px;
             margin-bottom: 10px;
-            color: #183153;
+            color: #504c46;
         }
 
         .search-input {
             width: 100%;
-            padding: 14px;
-            border: 2px solid #dbeafe;
-            border-radius: 10px;
+            padding: 13px 14px;
+            border: 1px solid #dedbd5;
+            border-radius: 8px;
             outline: none;
-            font-size: 16px;
-            transition: 0.3s;
+            background: #ffffff;
+            color: #373631;
+            font-family: inherit;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .search-input::placeholder {
+            color: #a39c91;
         }
 
         .search-input:focus {
-            border-color: #0891b2;
-            box-shadow: 0 0 8px rgba(8, 145, 178, 0.2);
+            border-color: #a39c91;
+            box-shadow: none;
         }
 
+        /* Search Button */
         .search-btn {
             width: 100%;
-            height: 50px;
+            padding: 14px;
             margin-top: 18px;
             border: none;
-            border-radius: 10px;
-            background: #087eaa;
-            color: white;
+            border-radius: 8px;
+            background: #d8d4cd;
+            color: #373631;
+            font-family: inherit;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
+            cursor: pointer;
             transition: 0.3s;
         }
 
         .search-btn:hover {
-            background: #075985;
+            background: #c5bfb5;
+            color: #373631;
         }
 
+        /* Results Section */
         .result {
-            background: #eff8ff;
-            border-radius: 15px;
+            background: #f7f6f3;
+            border: 1px solid #e7e4df;
+            border-radius: 12px;
             padding: 25px;
-            margin-top: 30px;
-            border-left: 5px solid #0891b2;
+            margin-top: 25px;
         }
 
         .result h3 {
-            color: #123c69;
+            color: #504c46;
+            font-size: 19px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
         .result p {
-            background: white;
+            background: #ffffff;
             padding: 12px 15px;
             border-radius: 8px;
             margin-bottom: 10px;
-            color: #334155;
-            border: 1px solid #e2e8f0;
+            color: #6a665f;
+            border: 1px solid #e7e4df;
+            font-size: 14px;
+            line-height: 1.7;
         }
 
         .result span {
             font-weight: bold;
-            color: #087eaa;
+            color: #504c46;
+            overflow-wrap: anywhere;
         }
 
+        /* Footer */
         .footer {
             text-align: center;
-            color: #94a3b8;
-            margin-top: 25px;
-            font-size: 13px;
+            color: #89857f;
+            margin-top: 30px;
+            font-size: 12px;
         }
 
+        /* Mobile Design */
         @media (max-width: 576px) {
             .main-card {
-                padding: 25px 18px;
+                padding: 25px 20px;
             }
 
             .header h1 {
                 font-size: 26px;
             }
+
+            .search-section,
+            .result {
+                padding: 20px;
+            }
+
+            nav a {
+                padding: 10px;
+                font-size: 12px;
+            }
         }
-    
-    
-nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-nav a {
-    background: white;
-    color: #123c69;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    background: #0891b2;
-    color: white;
-}
-
-    
     </style>
 </head>
 
 <body>
 
-
-<nav>
-    <a href="../Seatwork 1/index.html">🏠 Home</a>
-    <a href="element-checker.html">⚛️ Element Checker</a>
-    <a href="../Drill 2/club-members.html">👥 Club Members</a>
-    <a href="../Meet the creator/meet-the-creator.html">💗 Meet the Creator</a>
-</nav>
-
+    <!-- Student Showcase Navigation -->
+    <nav>
+        <a href="../Seatwork 1/index.html">🏠 Home</a>
+        <a href="element-checker.html">⚛️ Element Checker</a>
+        <a href="../Drill 2/club-members.html">👥 Club Members</a>
+        <a href="../Meet the creator/meet-the-creator.html">Meet the Creator</a>
+    </nav>
 
     <div class="container">
 
@@ -182,9 +239,15 @@ nav a:hover {
             <!-- Header -->
             <div class="header">
                 <div class="atom-icon">⚛️</div>
+
                 <h1>Non-Metal Elements</h1>
+
                 <p>Periodic Table Information Finder</p>
-                <p>Discover information about non-metal elements using their chemical symbols.</p>
+
+                <p>
+                    Discover information about non-metal
+                    elements using their chemical symbols.
+                </p>
             </div>
 
             <!-- Search Section -->
@@ -252,3 +315,4 @@ nav a:hover {
 
 </body>
 </html>
+
